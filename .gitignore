@@ -1,0 +1,5 @@
+config.json
+data/
+bin/
+*.exe
+worker/node_modules/
