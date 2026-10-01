@@ -26,7 +26,9 @@
    cp config.example.json config.json
    ```
 
-   也可以直接跑 `scripts\start.ps1`（Windows）或 `./scripts/start.sh`，缺什么补什么。
+   也可以直接跑 `scripts\start.ps1`（Windows）或 `./scripts/start.sh`，缺什么补什么。日常重启用
+   `scripts\restart.ps1`：停止旧实例（含 worker 子进程）→ 重新构建 → 后台启动 → 健康检查，运行日志在 `logs/`。
+   两个脚本均为 UTF-8 with BOM 编码，Windows PowerShell 5.1 下中文输出不会乱码。
 
 2. 启动（工作目录必须是仓库根，worker 用相对路径）：
 
