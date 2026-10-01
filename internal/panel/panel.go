@@ -20,7 +20,11 @@ import (
 	"qoder-free/internal/worker"
 )
 
-const Version = "0.1.0"
+// Version is the release identifier shown in the panel and startup log.
+// Release builds override it via:
+//
+//	go build -ldflags "-X qoder-free/internal/panel.Version=vX.Y.Z" ./cmd/server
+var Version = "0.1.0"
 
 type Panel struct {
 	Cfg     config.Config

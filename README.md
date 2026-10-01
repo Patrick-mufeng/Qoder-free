@@ -82,6 +82,14 @@ data/homes/<id>/     账号 HOME：凭证与 qodercli 状态都在 .qoder[-cn] �
 
 账号凭证（token、machine_id）只存在于 `data/homes/<账号ID>/.qoder[-cn]/` 内，由 worker（qodercli）自己读写；Go 侧不落盘任何 token。备份账号 = 备份该目录；面板「删除账号」只移除注册信息，不删数据目录。
 
+## 版本与发布
+
+- 版本号定义在 `internal/panel/panel.go` 的 `Version`，面板和启动日志都会显示；构建时可用
+  `go build -ldflags "-X qoder-free/internal/panel.Version=vX.Y.Z"` 注入覆盖。
+- 发布流程：更新 `CHANGELOG.md` → 提交 → `git tag -a vX.Y.Z -m "..."` → 推送 `main` 和标签 →
+  GitHub Releases 附上按上述 ldflags 构建的二进制。
+- 行尾约定：仓库内容统一 LF（见 `.gitattributes`），`*.ps1`/`*.bat` 为 CRLF，提交前无需手工转换。
+
 ## 与 cli2api / workbuddy-free 的关系
 
 - worker 目录（daemon.mjs / compat.mjs / sse.mjs / plaintext.mjs 等）原样取自 cli2api，协议契约一致：`/health`、`/v1/chat/completions`、`/admin/{models,quota,login,checkin}`。
