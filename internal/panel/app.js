@@ -462,6 +462,16 @@ async function loadConfig() {
   }
 }
 $("btnCfgReload").onclick = loadConfig;
+$("btnCopyKey").onclick = async () => {
+  try {
+    const { api_key } = await api("config/api-key");
+    if (!api_key) throw new Error("API key 未生成");
+    await navigator.clipboard.writeText(api_key);
+    toast("API key 已复制", "ok");
+  } catch (e) {
+    toast("复制失败：" + e.message, "err");
+  }
+};
 $("cfgForm").addEventListener("submit", async (ev) => {
   ev.preventDefault();
   const form = $("cfgForm");

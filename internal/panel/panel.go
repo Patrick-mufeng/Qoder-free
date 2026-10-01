@@ -243,6 +243,10 @@ func (p *Panel) route(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusOK, visible)
 	case rest == "config" && r.Method == http.MethodPost:
 		p.handleConfigSave(w, r)
+	case rest == "config/api-key" && r.Method == http.MethodGet:
+		// Returns the full key for the config page's copy button; the
+		// config listing above stays masked so screenshots are safe.
+		writeJSON(w, http.StatusOK, map[string]string{"api_key": p.Cfg.APIKey})
 	case len(parts) == 1 && r.Method == http.MethodPost:
 		p.handleAccountAction(w, r, parts[0], "")
 	case len(parts) == 3 && parts[0] == "accounts" && r.Method == http.MethodPost:

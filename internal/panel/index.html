@@ -574,7 +574,10 @@ legend { font-size: 11.5px; color: var(--ink-3); font-weight: 700; padding-botto
                 <input name="listen" disabled>
                 <span class="hint">修改需编辑 config.json 并重启进程</span></label>
               <label class="fld"><span class="lb">API 密钥（/v1 接口）</span>
-                <input name="api_key" disabled>
+                <span style="display:flex;gap:6px;align-items:center">
+                  <input name="api_key" disabled style="flex:1;min-width:0">
+                  <button type="button" class="xs" id="btnCopyKey" style="flex:0 0 auto">复制</button>
+                </span>
                 <span class="hint">面板本机开放无需鉴权；此密钥供 OpenAI 客户端使用</span></label>
             </div>
           </div>
